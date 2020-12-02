@@ -5,6 +5,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Axios from "axios";
 
 function Books() {
   // Setting our component's initial state
@@ -19,7 +20,7 @@ function Books() {
   // Loads all books and sets them to books
   function loadBooks() {
     API.getBooks()
-      .then(res => 
+      .then(res =>
         setBooks(res.data)
       )
       .catch(err => console.log(err));
@@ -34,7 +35,7 @@ function Books() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
+    setFormObject({ ...formObject, [name]: value })
   };
 
   // When the form is submitted, use the API.saveBook method to save the book data
@@ -60,65 +61,69 @@ function Books() {
         .catch(err => console.log(err));
     }
   };
-
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                onChange={() => {}}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                onChange={() => {}}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                onChange={() => {}}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(formObject.author && formObject.title)}
-                onClick={() => {}}
-              >
-                Submit Book
+  function getAxios()  {
+    Axios.get("https://www.googleapis.com/books/v1/volumes?q=quilting").then(response => {
+      console.log(response)
+    })
+  }
+  return (
+    <Container fluid>
+      <Row>
+        <Col size="md-6">
+          <Jumbotron>
+            <h1>What Books Should I Read?</h1>
+          </Jumbotron>
+          <form>
+            <Input
+              onChange={() => { }}
+              name="title"
+              placeholder="Title (required)"
+            />
+            {/* <Input
+              onChange={() => { }}
+              name="author"
+              placeholder="Author (required)"
+            />
+            <TextArea
+              onChange={() => { }}
+              name="synopsis"
+              placeholder="Synopsis (Optional)"
+            /> */}
+            <FormBtn
+              disabled={!(formObject.author && formObject.title)}
+              onClick={getAxios}
+            >
+              Submit Book
               </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {books.length ? (
-              <List>
-                {books.map(book => {
-                  return (
-                    <ListItem key={book._id}>
-                      <a href={"/books/" + book._id}>
-                        <strong>
-                          {book.title} by {book.author}
-                        </strong>
-                      </a>
-                      <DeleteBtn onClick={() =>{}} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            ) : (
+          </form>
+        </Col>
+        <Col size="md-6 sm-12">
+          <Jumbotron>
+            <h1>Books On My List</h1>
+          </Jumbotron>
+          {books.length ? (
+            <List>
+              {books.map(book => {
+                return (
+                  <ListItem key={book._id}>
+                    <a href={"/books/" + book._id}>
+                      <strong>
+                        {book.title} by {book.author}
+                      </strong>
+                    </a>
+                    <DeleteBtn onClick={() => { }} />
+                  </ListItem>
+                );
+              })}
+            </List>
+          ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+        </Col>
+      </Row>
+    </Container>
+  );
+}
 
 
 export default Books;
