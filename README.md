@@ -8,7 +8,7 @@ Employee directory app created with React web framework.  When the user loads th
 As a user, I want the ability to google search books and save books to review or purchase later. 
 
 ## Preview
-![alt-text](xxxx.GIF)
+![alt-text](search.GIF)
 
 ## Deployed Link
  
@@ -17,7 +17,9 @@ As a user, I want the ability to google search books and save books to review or
  
 
 ## Acknowledgements
-The successful release of this application would not be possible without the candid feedback and support of my tutor, class TA's and cohort peers. 
+The successful release of this application would not be possible without the candid feedback and support of my tutor and cohort peer, Diogo!  
+
+
 
 ## License 
 Copyright 2020 Jeneth Diesta
