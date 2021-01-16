@@ -11,10 +11,10 @@ As a user, I want the ability to google search books and save books to review or
 ![alt-text](search.GIF)
 
 ## Deployed Link
+https://obscure-cliffs-36523.herokuapp.com/
  
 ## GitHub
- 
- 
+ https://github.com/jen6one9/that-google-books-search 
 
 ## Acknowledgements
 The successful release of this application would not be possible without the candid feedback and support of my tutor and cohort peer, Diogo!  
